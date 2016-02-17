@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Admin demo" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <main>
+      <% if flash[:notice] -%>
+      <div class="row">
+        <div data-closable class="callout primary">
+          <%= flash[:notice] %>
+          <button class="close-button" aria-label="Close notice" type="button" data-close>
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
+      <% end -%>
+      <% if flash[:alert] -%>
+      <div class="row">
+        <div data-closable class="callout alert">
+          <%= flash[:alert] %>
+          <button class="close-button" aria-label="Close alert" type="button" data-close>
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
+      <% end -%>
+
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="row">
+        <%= render partial: 'newsletter/form' -%>
+      </div>
+    </footer>
+  </body>
+</html>

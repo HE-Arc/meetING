@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+L:
+  name: L
+
+M:
+  name: M
+
+S:
+  name: S

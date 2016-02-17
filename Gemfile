@@ -60,9 +60,5 @@ group :development do
   #gem 'spring'
 
   # Deployment using capistrano
-<<<<<<< HEAD
   gem 'capistrano-rails', '>= 0'
-=======
-  gem 'capistrano-rails', '~> 1.1'
->>>>>>> b20cf6b2fbc42bf110757e350c5985293f35c3f3
 end

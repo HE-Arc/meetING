@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'app'
-set :repo_url, 'git@github.com:HE-Arc/demo-rails-application.git'
+set :repo_url, 'git@github.com:HE-Arc/meetING.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -36,18 +36,18 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
+  #after :restart, :clear_cache do
+    #on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       #within release_path do
       #  execute :rake, 'cache:clear'
       #end
-    end
-  end
+    #end
+  #end
 
   after :finished, :restart_puma do
     on roles(:web) do
-      sudo 'sv restart puma'
+      execute :sudo 'sv restart puma'
     end
   end
 

@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
+>>>>>>> b20cf6b2fbc42bf110757e350c5985293f35c3f3
 
 # Automagic administration with rails_admin
 gem 'rails_admin'
@@ -56,5 +57,5 @@ group :development do
   #gem 'spring'
 
   # Deployment using capistrano
-  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rails', '>= 0'
 end

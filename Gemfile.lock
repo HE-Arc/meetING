@@ -204,7 +204,11 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+<<<<<<< HEAD
+  capistrano-rails
+=======
   capistrano-rails (~> 1.1)
+>>>>>>> b20cf6b2fbc42bf110757e350c5985293f35c3f3
   coffee-rails (~> 4.1.0)
   foundation-rails (~> 6.1)
   jbuilder (~> 2.0)

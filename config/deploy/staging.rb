@@ -62,5 +62,5 @@ server 'srvz-webapp.he-arc.ch', user: 'jeshon', roles: %w{app db web}
 #   }
 
 set :ssh_options, {
-  port: 2020
+  port: 2005
 }

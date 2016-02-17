@@ -47,7 +47,7 @@ namespace :deploy do
 
   after :finished, :restart_puma do
     on roles(:web) do
-      execute :sudo 'sv restart puma'
+      sudo 'sv restart puma'
     end
   end
 

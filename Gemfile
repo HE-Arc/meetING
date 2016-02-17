@@ -29,11 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
-<<<<<<< HEAD
 gem 'capistrano-rails', group: :development
-=======
-# gem 'capistrano-rails', group: :development
->>>>>>> b20cf6b2fbc42bf110757e350c5985293f35c3f3
 
 # Automagic administration with rails_admin
 gem 'rails_admin'

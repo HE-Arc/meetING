@@ -90,6 +90,13 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  database: <%= ENV['POSTGRES_USERNAME'] %>
+  user: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  schema_search_path: production
+
 production:
   <<: *default
   database: <%= ENV['POSTGRES_USERNAME'] %>

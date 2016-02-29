@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203084632) do
+ActiveRecord::Schema.define(version: 20160229104539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "id_user_owner"
+    t.text     "description"
+    t.integer  "id_user_target"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "title"
@@ -47,6 +56,14 @@ ActiveRecord::Schema.define(version: 20160203084632) do
   end
 
   add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "nom"
+    t.string   "prenom"
+    t.string   "mail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   add_foreign_key "products_sizes", "products"
   add_foreign_key "products_sizes", "sizes"

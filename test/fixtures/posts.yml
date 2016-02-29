@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  date: 2016-02-29
+  id_user_owner: 1
   description: MyText
-  price: 9.99
+  id_user_target: 1
 
 two:
-  title: MyString
+  date: 2016-02-29
+  id_user_owner: 1
   description: MyText
-  price: 9.99
+  id_user_target: 1

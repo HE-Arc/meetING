@@ -25,38 +25,6 @@ ActiveRecord::Schema.define(version: 20160229104539) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.decimal  "price"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  create_table "products_sizes", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "size_id",    null: false
-  end
-
-  create_table "sizes", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "email"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "nom"
     t.string   "prenom"
@@ -65,6 +33,11 @@ ActiveRecord::Schema.define(version: 20160229104539) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "products_sizes", "products"
-  add_foreign_key "products_sizes", "sizes"
+  create_table "users_posts", force: :cascade do |t|
+    t.integer "user_id",	null: false
+    t.integer "post_id",    null: false
+  end
+
+  add_foreign_key "users_posts", "users"
+  add_foreign_key "users_posts", "posts"
 end

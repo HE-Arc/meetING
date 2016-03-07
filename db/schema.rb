@@ -33,11 +33,4 @@ ActiveRecord::Schema.define(version: 20160229104539) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users_posts", force: :cascade do |t|
-    t.integer "user_id",	null: false
-    t.integer "post_id",    null: false
-  end
-
-  add_foreign_key "users_posts", "users"
-  add_foreign_key "users_posts", "posts"
 end

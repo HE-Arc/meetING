@@ -1,0 +1,68 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <div class="card-panel">
+      <h5>Qui est t'il/elle ?</h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">comment</i>
+          <%= text_area_tag(:description, "", class: 'materialize-textarea' ) %>
+          <%= label_tag(:description, "Description") %>
+        </div>
+      </div>
+            
+      <div class="row">          
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <%= text_field :target, :nom %>
+          <%= label_tag(:target_nom, "Nom") %>
+        </div>
+    
+        <div class="input-field col s6">
+          <%= text_field :target, :prenom %>
+          <%= label_tag(:target_prenom, "Prenom") %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card-panel">
+      <h5>Qui est tu ?</h5>
+            
+      <div class="row">          
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <%= text_field :user, :nom %>
+          <%= label_tag(:user_nom, "Nom") %>
+        </div>
+    
+        <div class="input-field col s6">
+          <%= text_field :user, :prenom %>
+          <%= label_tag(:user_prenom, "Prenom") %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <%= email_field :user, :mail %>
+          <%= label_tag(:user_mail, "Mail") %>
+        </div>
+      </div>
+    </div>
+    <div class="btn waves-effect waves-light light-blue lighten-1">
+    <%= f.submit 'Envoyer le post' %>
+    <i class="material-icons right">send</i>
+    </div>
+  </div>
+<% end %>

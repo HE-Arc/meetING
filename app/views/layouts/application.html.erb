@@ -22,12 +22,12 @@
       <div class="nav-wrapper container">
         <ul class="hide-on-med-and-down">
           <li><a href="/">Tous les posts</a></li>
-          <li><a href="new_post">Nouveau post</a></li>
+          <li><a href="<%= new_post_path %>">Nouveau post</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
           <li><a href="/">Tous les posts</a></li>
-          <li><a href="new_post">Nouveau post</a></li>
+          <li><a href="<%= new_post_path %>">Nouveau post</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
@@ -64,7 +64,7 @@
             <h5 class="white-text">Plan du site</h5>
             <ul>
               <li><a class="white-text" href="/">Tous les posts</a></li>
-              <li><a class="white-text" href="new_post">Nouveau</a></li>
+              <li><a class="white-text" href="<%= new_post_path %>">Nouveau</a></li>
             </ul>
           </div>
         </div>

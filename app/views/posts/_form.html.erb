@@ -2,67 +2,61 @@
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
       <% @post.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %> 
 
-  <div class="actions">
     <div class="card-panel">
-      <h5>Qui est t'il/elle ?</h5>
+      <h5>QUI EST T'IL / ELLE ?</h5>
+    </div>
+    <div class="card-panel">
+      <div class="row">          
+        <div class="input-field col s6">
+          <i class="material-icons prefix">label_outline</i>
+          <%= f.text_field :title %>
+          <%= f.label :title, "Titre du post" %>
+          <%= f.file_field :image %>
+        </div>
+      </div>
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">comment</i>
-          <%= text_area_tag(:description, "", class: 'materialize-textarea' ) %>
-          <%= label_tag(:description, "Description") %>
+          <%= f.text_area :description, :class => 'materialize-textarea' %>
+          <%= f.label :description, "Décris au mieux cette personne afin qu'elle puisse s'identifier" %>
         </div>
       </div>
-            
+        
       <div class="row">          
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <%= text_field :target, :nom %>
-          <%= label_tag(:target_nom, "Nom") %>
+          <%= f.text_field :name %>
+          <%= f.label :name, "Son nom" %>
         </div>
     
         <div class="input-field col s6">
-          <%= text_field :target, :prenom %>
-          <%= label_tag(:target_prenom, "Prenom") %>
-        </div>
-      </div>
-    </div>
-    
-    <div class="card-panel">
-      <h5>Qui est tu ?</h5>
-            
-      <div class="row">          
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-          <%= text_field :user, :nom %>
-          <%= label_tag(:user_nom, "Nom") %>
-        </div>
-    
-        <div class="input-field col s6">
-          <%= text_field :user, :prenom %>
-          <%= label_tag(:user_prenom, "Prenom") %>
+          <%= f.text_field :firstname %>
+          <%= f.label :firstname, "Son prénom" %>
         </div>
       </div>
       
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">email</i>
-          <%= email_field :user, :mail %>
-          <%= label_tag(:user_mail, "Mail") %>
+      <div class="row">  
+        <div class="col s6">
+          <%= f.radio_button :gender, :man, :checked => true %>
+          <%= f.label :gender_man, "C'est un homme" %>
+
+          <%= f.radio_button :gender, :woman %>
+          <%= f.label :gender_woman, "C'est une femme" %>
         </div>
       </div>
+    
     </div>
-    <div class="btn waves-effect waves-light light-blue lighten-1">
-    <%= f.submit 'Envoyer le post' %>
-    <i class="material-icons right">send</i>
-    </div>
+    
+  <div class="actions">
+    <%= link_to 'Retour', posts_path, :class => '"waves-effect waves-light btn' %>
+    <%= f.submit 'Envoyer le post', :class => 'btn waves-effect waves-light light-blue lighten-1' %>
   </div>
 <% end %>

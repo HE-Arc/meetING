@@ -670,7 +670,7 @@ if ($) {
   }; // End dropdown plugin
 
   $(document).ready(function(){
-    $('.dropdown-button').dropdown();
+    $('.dropdown-button').dropdown() ;
   });
 }( jQuery ));;(function($) {
     var _stack = 0,

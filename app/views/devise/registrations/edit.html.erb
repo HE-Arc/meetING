@@ -1,0 +1,70 @@
+<div class="card-panel">
+  <h5>Modification <%= resource_name.to_s.humanize %></h5>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+<div class="card-panel">
+  <div class="field"> 
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, "Mot de passe" %> <i>(laisser vide si aucun changement)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation du mot de passe" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, "Mot de passe actuel" %> <i>(Sécurité pour valider le changement)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+</div>
+
+  <div class="card-panel">
+    
+    <div class="row">          
+      <div class="input-field col s6">
+        <i class="material-icons prefix">account_circle</i>
+         <%= f.label :name, "Nom" %>
+         <%= f.text_field :name, autofocus: true %>
+      </div>
+      
+      <div class="input-field col s6">
+         <%= f.label :firstname, "Prénom" %>
+         <%= f.text_field :firstname %>
+      </div>
+    </div>
+    
+    <div class="row">  
+      <div class="col s6">
+          <%= f.radio_button :gender, :man, :checked => (resource.gender == "man") %>
+          <%= f.label :gender_man, "Je suis un homme" %>
+
+          <%= f.radio_button :gender, :woman, :checked => (resource.gender == "woman") %>
+          <%= f.label :gender_woman, "Je suis une femme" %>
+        </div>
+    </div>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Valider les changements", :class => 'waves-effect waves-light btn light-blue darken-2' %>
+  </div>
+<% end %>
+
+<br/>
+<div class="card-panel">
+  <h5>Fermer mon compte</h5>
+</div>
+<div><%= button_to "Fermer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => 'waves-effect waves-light btn red accent-4' %></div>
+<br/>
+<%= link_to "Retour", :back, :class => 'waves-effect waves-light btn' %>

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <% @posts.each do |post| %>
+    <div class="col s12 m6 l4">
+      <div class="card large">
+        <div class="card-image">
+          <%= image_tag(post.image.url(:blur), :alt => "") %>
+          <span class="card-title truncate col s12", style="background-color:rgba(0, 0, 0, 0.2);"><%= post.title %></span>
+        </div>
+        <div class="card-content">
+          <span class="activator grey-text text-darken-4"> <%= post.date %><i class="material-icons right">more_vert</i></span>
+          <p><%= post.description %></p>
+        </div>
+
+        <div class="card-action center">
+          <a href="/posts/<%= post.id %>/check" id="download-button" class="btn waves-effect waves-light light-blue darken-2">Je crois que c'est moi</a>
+        </div>
+        
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><%= post.title %><i class="material-icons right">close</i></span>
+          <p><%= post.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

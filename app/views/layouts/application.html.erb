@@ -10,50 +10,59 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    "materialize" %>
-    <%= javascript_include_tag "https://code.jquery.com/jquery-2.1.1.min.js" %>
+    <%= javascript_include_tag "https://code.jquery.com/jquery-2.1.1.min.js"    %>
+    <%= javascript_include_tag "jquery_ujs" %>
     <%= javascript_include_tag "materialize" %>
     <%= javascript_include_tag "init" %>
-    <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %> 
   </head>
 
-  <body>
-
-    <nav class="light-blue lighten-1" role="navigation">
+  <body class="grey lighten-4">
+  <div class="navbar-fixed">
+    <nav class="teal" role="navigation">
       <div class="nav-wrapper container">
-        <ul class="hide-on-med-and-down">
+        <ul class="left hide-on-med-and-down">
           <li><a href="/">Tous les posts</a></li>
           <li><a href="<%= new_post_path %>">Nouveau post</a></li>
+        </ul>
+        
+        <ul class="hide-on-med-and-down">
+          <%= render 'devise/menu/registration_items' %>
+          <%= render 'devise/menu/login_items' %>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
           <li><a href="/">Tous les posts</a></li>
           <li><a href="<%= new_post_path %>">Nouveau post</a></li>
+          <%= render 'devise/menu/registration_items' %>
+          <%= render 'devise/menu/login_items' %>
         </ul>
+        
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        
+        <%= form_tag("/recherche", method: "get", :class=>'right') do %>
+          <div class="input-field">
+            <%= search_field :q, :title %>
+            <label for="q"><i class="material-icons">search</i></label>
+          </div>
+        <%end%>
+
       </div>
     </nav>
+  </div>
 
-    <div id="index-banner" class="banner-container">
-      <div class="banner"><%= image_tag("bannerMeetING.png", :alt => "Banner") %></div>
-    
-      <div class="section no-pad-bot">
-        <div class="container">
-            <h1 class="header center orange-text">Bienvenue sur MeetING</h1>
-        </div>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
       </div>
     </div>
 
     <div class="container">
       <div class="section">
-
-        <div class="row">
           <%= yield %>
-        </div>
-
       </div>
     </div>
 
-    <footer class="page-footer orange">
+    <footer class="page-footer grey darken-3">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
@@ -66,12 +75,14 @@
             <ul>
               <li><a class="white-text" href="/">Tous les posts</a></li>
               <li><a class="white-text" href="<%= new_post_path %>">Nouveau</a></li>
+              <%= render 'devise/menu/registration_items' %>
+              <%= render 'devise/menu/login_items' %>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="footer-copyright">
+      <div class="footer-copyright page-footer grey darken-4">
         <div class="container">
           Made by Wirth Jéremy, Mut Horia and Assunçao Jeshon <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
         </div>

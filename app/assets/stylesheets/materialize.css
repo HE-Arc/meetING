@@ -3,6 +3,36 @@
  * Copyright 2014-2015 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+ 
+ /* ==========================================================================
+   MY CSS
+   ========================================================================== */
+.banner-container{
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.banner img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 100%;
+}
+
+ /* ==========================================================================
+   MATERIALIZE CSS
+   ========================================================================== */
+   
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important;
 }

@@ -53,9 +53,13 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create
-    @post = Post.new({:users_id => current_user.id, :date => DateTime.now, :title => post_params[:title], :description => post_params[:description], :name => post_params[:name], :firstname => post_params[:firstname], :image => post_params[:image], :gender => post_params[:gender]})
-    #@post = Post.new(post_params)
+  def create      
+    @post = Post.new({:users_id => current_user.id, :date => DateTime.now, :title => post_params[:title], :description => post_params[:description], :name => post_params[:name], :firstname => post_params[:firstname], :gender => post_params[:gender]})
+    if post_params[:image].blank?
+      @post.image = File.open("public/" + post_params[:gender] + ".jpg")
+    else
+      @post.image = post_params[:image]
+    end
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
@@ -71,7 +75,10 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update({:title => post_params[:title], :description => post_params[:description], :name => post_params[:name], :firstname => post_params[:firstname], :image => post_params[:image], :gender => post_params[:gender]})
+      if @post.update({:title => post_params[:title], :description => post_params[:description], :name => post_params[:name], :firstname => post_params[:firstname], :gender => post_params[:gender]})
+        if !post_params[:image].blank?
+          @post.update({:image => post_params[:image]})
+        end
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :index, status: :ok, location: @post }
       else

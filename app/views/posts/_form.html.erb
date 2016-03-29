@@ -17,7 +17,7 @@
       <div class="row">          
         <div class="input-field col s6">
           <i class="material-icons prefix">label_outline</i>
-          <%= f.text_field :title %>
+          <%= f.text_field :title, :required => true %>
           <%= f.label :title, "Titre du post" %>
           <%= f.file_field :image %>
         </div>
@@ -25,7 +25,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">comment</i>
-          <%= f.text_area :description, :class => 'materialize-textarea' %>
+          <%= f.text_area :description, :class => 'materialize-textarea', :required => true %>
           <%= f.label :description, "Décris au mieux cette personne afin qu'elle puisse s'identifier" %>
         </div>
       </div>
@@ -33,12 +33,12 @@
       <div class="row">          
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <%= f.text_field :name %>
+          <%= f.text_field :name, :required => true, :pattern => '^[a-zA-Z0-9-]+$' %>
           <%= f.label :name, "Son nom" %>
         </div>
     
         <div class="input-field col s6">
-          <%= f.text_field :firstname %>
+          <%= f.text_field :firstname, :required => true, :pattern => '^[a-zA-Z0-9-]+$' %>
           <%= f.label :firstname, "Son prénom" %>
         </div>
       </div>

@@ -11,12 +11,12 @@
       <div class="input-field col s6">
         <i class="material-icons prefix">account_circle</i>
          <%= f.label :name, "Nom" %>
-         <%= f.text_field :name, autofocus: true %>
+         <%= f.text_field :name, autofocus: true, required: true %>
       </div>
       
       <div class="input-field col s6">
          <%= f.label :firstname, "Prénom" %>
-         <%= f.text_field :firstname %>
+         <%= f.text_field :firstname, required: true %>
       </div>
     </div>
     
@@ -35,7 +35,7 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
         <%= f.label :email, "Email" %>
-        <%= f.email_field :email %>
+        <%= f.email_field :email, required: true %>
       </div>
     </div>
   
@@ -43,19 +43,19 @@
       <div class="input-field col s6">
       <i class="material-icons prefix">vpn_key</i>
         <%= f.label :password, "Mot de passe" %>
-        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password, autocomplete: "off", required: true %>
       </div>
       
       <div class="input-field col s6">
         <%= f.label :password_confirmation, "Confirmer le mot de passe" %>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
       </div>
     </div>
 
   </div>
   
   <div class="actions">
-    <%= f.submit 'Sign up', :class => 'btn waves-effect waves-light light-blue lighten-1' %>
+    <%= f.submit 'Sign up', :class => 'btn waves-effect waves-light teal' %>
   </div>
 <% end %>
 

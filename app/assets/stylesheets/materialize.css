@@ -7799,6 +7799,14 @@ small {
   cursor: pointer;
 }
 
+.card .card-date {
+  font-style: italic;
+}
+
+.card .card-date.activator {
+  cursor: pointer;
+}
+
 .card.small, .card.medium, .card.large {
   position: relative;
 }

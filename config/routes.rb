@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   
     root 'posts#index'
-    get 'gerer' => 'posts#admin'
-    get 'recherche' => 'posts#search'
-    get 'posts/:id/check' => 'posts#check'
+    get 'gerer' => 'posts#admin', as: :posts_admin_path
+    get 'recherche' => 'posts#search', as: :posts_search_path
+    get 'posts/:id/check' => 'posts#check', as: :posts_check_path
      
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

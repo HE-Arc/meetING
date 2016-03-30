@@ -15,8 +15,8 @@
         </div>
         
         <div class="card-action center">
-          <a href="<%= edit_post_path(post) %>">Modifier</a>
-          <%= link_to 'Supprimer', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <a href="<%= edit_post_path(post) %>" class="teal-text">Modifier</a>
+          <%= link_to 'Supprimer', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'red-text text-accent-4' %>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4 truncate"><%= post.title %><i class="material-icons right">close</i></span>

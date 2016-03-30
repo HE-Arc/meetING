@@ -41,7 +41,7 @@
           
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
           
-          <%= form_tag("/recherche", method: "get", :class=>'right') do %>
+          <%= form_tag(:posts_search_path, method: "get", :class=>'right') do %>
             <div class="input-field">
               <%= search_field :q, :title %>
               <label for="q"><i class="material-icons">search</i></label>

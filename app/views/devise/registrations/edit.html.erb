@@ -16,12 +16,12 @@
 
   <div class="field">
     <%= f.label :password, "Mot de passe" %> <i>(laisser vide si aucun changement)</i><br />
-    <%= f.password_field :password, autocomplete: "off", required: true %>
+    <%= f.password_field :password, autocomplete: "off", required: false %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation, "Confirmation du mot de passe" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: false %>
   </div>
 
   <div class="field">

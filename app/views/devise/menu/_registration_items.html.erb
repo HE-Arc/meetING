@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <li><%= link_to('Profil', edit_user_registration_path, {:class=>"white-text"})  %></li>
-  <li><%= link_to('Mes posts', 'posts_admin_path', {:class=>"white-text"})  %></li>
+  <li><%= link_to('Mes posts', posts_admin_path, {:class=>"white-text"})  %></li>
 <% else %>
   <li>
   <%= link_to('Inscription', new_user_registration_path, {:class=>"white-text"})  %>

@@ -3,6 +3,15 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   # GET /posts
   # GET /posts.json
+
+  def oposite_gender(current_user)
+    if current_user.gender == "man"
+      return 'woman'
+    else
+      return 'man'
+    end
+  end
+
   def index
     if user_signed_in?
       @posts = Post.where("gender = ?", current_user.gender)
@@ -10,11 +19,11 @@ class PostsController < ApplicationController
       @posts = Post.all
     end
   end
- 
+
   def admin
     @posts = Post.where("users_id =?", current_user.id)
   end
-  
+
   def search
       if user_signed_in?
       @posts = Post.where("title ilike :kw and gender = :pp", :kw=>"%#{search_params[:title]}%", :pp => current_user.gender)
@@ -22,7 +31,7 @@ class PostsController < ApplicationController
       @posts = Post.where("title ilike :kw ", :kw=>"%#{search_params[:title]}%")
     end
   end
-  
+
   def check
     respond_to do |format|
       if user_signed_in?
@@ -36,7 +45,7 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -53,7 +62,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create      
+  def create
     @post = Post.new({:users_id => current_user.id, :date => DateTime.now, :title => post_params[:title], :description => post_params[:description], :name => post_params[:name], :firstname => post_params[:firstname], :gender => post_params[:gender]})
     if post_params[:image].blank?
       @post.image = File.open("public/" + post_params[:gender] + ".jpg")
@@ -108,7 +117,7 @@ class PostsController < ApplicationController
     def post_params
       params[:post]
     end
-    
+
     def search_params
       params[:q]
     end

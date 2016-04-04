@@ -14,19 +14,19 @@
     <%= javascript_include_tag "jquery_ujs" %>
     <%= javascript_include_tag "materialize" %>
     <%= javascript_include_tag "init" %>
-    <%= csrf_meta_tags %> 
+    <%= csrf_meta_tags %>
   </head>
 
   <body class="grey lighten-4">
     <div class="navbar-fixed">
       <nav class="teal" role="navigation">
         <div class="nav-wrapper container">
-          
+
           <ul class="left hide-on-med-and-down">
             <li><a href="/">Tous les posts</a></li>
             <li><a href="<%= new_post_path %>">Nouveau post</a></li>
           </ul>
-          
+
           <ul class="hide-on-med-and-down">
             <%= render 'devise/menu/registration_items' %>
             <%= render 'devise/menu/login_items' %>
@@ -38,9 +38,9 @@
             <%= render 'devise/menu/registrationMobile_items' %>
             <%= render 'devise/menu/loginMobile_items' %>
           </ul>
-          
+
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-          
+
           <%= form_tag(:posts_search_path, method: "get", :class=>'right') do %>
             <div class="input-field">
               <%= search_field :q, :title %>
@@ -58,6 +58,22 @@
 
     <div class="container">
       <div class="section">
+        <!-- Script to start modal view-->
+        <script>
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal({
+              dismissible: true, // Modal can be dismissed by clicking outside of the modal
+              opacity: .5, // Opacity of modal background
+              in_duration: 300, // Transition in duration
+              out_duration: 200, // Transition out duration
+              //ready: function() { alert('Ready'); }, // Callback for Modal open
+              //complete: function() { alert('Closed'); } // Callback for Modal close
+            }
+          );
+          });
+        </script>
+
           <%= yield %>
       </div>
     </div>
@@ -68,7 +84,7 @@
           <div class="col l6 s12">
             <h5 class="white-text">Description</h5>
             <p class="grey-text text-lighten-4">
-              Vous rêvez de déclarer votre flemme à votre collègue ? A votre patron(ne) ? A votre voisin(e) ?
+              Vous rêvez de déclarer votre flamme à votre collègue ? A votre patron(ne) ? A votre voisin(e) ?
               Mais vous êtes de nature timide ?<br/>
               MeetING est fait pour vous !<br/>
             </p>

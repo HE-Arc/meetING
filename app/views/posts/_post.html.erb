@@ -12,7 +12,15 @@
         </div>
 
         <div class="card-action center">
-          <a href="#modal_thinkItsMe" id="download-button" class="btn waves-effect waves-light teal model-trigger">Je crois que c'est moi</a>
+          <%
+          link = '#'
+          if user_signed_in?
+            link = posts_check_path_url(id: post.id)
+          else
+            link = '#modal_thinkItsMe'
+          end
+          %>
+          <a href="<%= link %>" id="download-button" class="btn waves-effect waves-light teal modal-trigger">Je crois que c'est moi</a>
         </div>
 
         <div class="card-reveal">
@@ -21,17 +29,34 @@
         </div>
       </div>
     </div>
-  <% end %>
 
-  <div id="modal_thinkItsMe" class="modal">
+  <!-- Modal view -->
+  <div id="modal_thinkItsMe" class="modal modal-fixed-footer">
   	<div class="modal-content">
-  		<h4>Modal Header</h4>
+  		<h4>C'est moi!</h4>
   		<p>
-  			Will be coming soon.
+        Si tu penses correspondre à l'annonce "<%= post.title %>", entre ton nom et prénom et sois surpris(e).
+      </p>
+       <h3><%= post.title %></h3>
+       <%= image_tag(post.image.url(:blur), :alt => "", class: 'activator') %>
+       <p>
+      	<%= post.description %>
   		</p>
+
+
+
+      <ul>
+        <li><label for="user_name">Ton Nom</label>
+        <input name="user[name]" id="user_name" autofocus="autofocus" required="required" type="text"></li>
+        <li><label for="user_surname">Ton Prénom</label>
+        <input surname="user[surname]" id="user_surname" autofocus="autofocus" required="required" type="text"></li>
+      </ul>
+
   	</div>
   	<div class="modal-footer">
-  		<a href="<%= posts_check_path_url(id: post.id) %>" class="modal-action modal-close waves-effect waves-green btn-flat">Complete</a>
+      <a href="<%= posts_check_path_url(id: post.id) %>" class="modal-action modal-close waves-effect waves-green btn-flat">Verifier</a>
+  		<a href="<%= new_user_session_path %>" class="modal-action modal-close waves-effect waves-green btn-flat">Login</a>
+      <a href="<%= new_user_registration_path %>" class="modal-action modal-close waves-effect waves-green btn-flat">S'enregistrer</a>
   	</div>
-
+    <% end %>
 </div>

@@ -1,0 +1,70 @@
+# Procédure de test
+
+        1. Installation
+            1.1. Si dossier "ror" absent, créer en un et y lancer la commande :
+                    ```shell
+    	            $ git clone https://github.com/HE-Arc/meetING.git
+                    ```
+
+	    1.2. Lancer Kitematic en tant qu'administrateur
+            1.3. Si les machines suivantes :
+                  - "ror_memcached_1"
+                  - "ror_mysql_1"
+                  - "ror_postgres_1"
+                  - "ror_redis_1"
+                  - "ror_web_1"
+                  - "ror_data_1"
+	         Sont présentes, démarrez-les dans cet ordre.
+            1.4. Si elles ne sont pas présents, ouvrer le shell de docker
+                 et suivez les instructions du mail de monsieur Blanc, datant du 06.12.2015
+ 	         qui nous permettent de télécharger un fichier YAML décrivant un
+                 environnement de 6 machines, installer l'environnement, etc. 
+        
+        2. Démarrage
+	    2.1. Depuis le shell de docker lancer :
+                ```shell
+    	        $ docker.exe exec -it ror_web_1 /bin/bash
+    	        $ su ruby
+    	        $ cd /usr/src/app/
+                $ rake db:setup
+    	        $ rails server --bind 0.0.0.0
+                ```
+
+        3. Ouvrir le site en: `http://192.168.99.100:3000/`
+            3.1. Tests préliminaires :
+                3.1.1. erreurs 404 ou 500 ?
+                       -> Si oui, redémarrer le serveur, vérifier les routes, etc.
+            3.2. Tests "Visuel" :
+                3.2.1. Est-ce que la page ressemble à ce qui est attendu ?
+                       -> Si non, forcer les migrations et les seeds :
+		          ```shell
+    	                  $ rake db:setup
+    	                  $ rails db:reset
+    	                  $ rails db:seed
+                          ```
+ 
+        4. Tester l'HTML
+            4.1. https://validator.w3.org/ avec les options de base
+
+	5. Tester les forumlaires
+	    5.1 Creer un post
+                5.1.1 Sans description
+                5.1.2 Sans nom "cible"
+                5.1.3 Sans prenom "cible"
+                5.1.4 Sans notre nom
+                5.1.5 Sans notre prenom
+                5.1.6 Sans notre email
+                5.1.7 Combiner ces différents points
+            5.1 Cliquer sur "Je crois que c'est moi"
+                5.1.1 Sans notre nom
+                5.1.2 Sans notre prenom
+                5.1.3 Sans notre email
+                5.1.4 Combiner ces différents points
+
+        6. Séparation des logiques métiers et de présentation.
+            6.1. Trouver de l'HTML dans les fichiers PHP présent dans "app/views"
+	    6.2. Vérifier la bonne utilisation des layouts (code répété = dans un layouts)
+ 
+        7. Requêtes MySQL
+            7.1. Regarder les requêtes faites sur les pages. Vérifier le bon usage de l'ORM
+                   7.1.1. Dans la mesure du possible, usage des relations.

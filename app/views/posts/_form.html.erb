@@ -1,0 +1,62 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> 
+
+    <div class="card-panel">
+      <h5>QUI EST T'IL / ELLE ?</h5>
+    </div>
+    <div class="card-panel">
+      <div class="row">          
+        <div class="input-field col s6">
+          <i class="material-icons prefix">label_outline</i>
+          <%= f.text_field :title, :required => true %>
+          <%= f.label :title, "Titre du post" %>
+          <%= f.file_field :image %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">comment</i>
+          <%= f.text_area :description, :class => 'materialize-textarea', :required => true %>
+          <%= f.label :description, "Décris au mieux cette personne afin qu'elle puisse s'identifier" %>
+        </div>
+      </div>
+        
+      <div class="row">          
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <%= f.text_field :name, :required => true, :pattern => '^[a-zA-Z0-9-]+$' %>
+          <%= f.label :name, "Son nom" %>
+        </div>
+    
+        <div class="input-field col s6">
+          <%= f.text_field :firstname, :required => true, :pattern => '^[a-zA-Z0-9-]+$' %>
+          <%= f.label :firstname, "Son prénom" %>
+        </div>
+      </div>
+      
+      <div class="row">  
+        <div class="col s6">
+          <%= f.radio_button :gender, :man, :checked => true %>
+          <%= f.label :gender_man, "C'est un homme" %>
+
+          <%= f.radio_button :gender, :woman %>
+          <%= f.label :gender_woman, "C'est une femme" %>
+        </div>
+      </div>
+    
+    </div>
+    
+  <div class="actions">
+    <%= link_to 'Retour', posts_path, :class => '"waves-effect waves-light btn' %>
+    <%= f.submit 'Envoyer le post', :class => 'btn waves-effect waves-light light-blue lighten-1' %>
+  </div>
+<% end %>

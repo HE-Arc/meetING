@@ -1,25 +1,37 @@
-<div class="col s12 m6 l4">
-	<div class="icon-block">
-		<h2 class="center light-blue-text"><i class="material-icons">chat_bubble</i></h2>
-		<h5 class="center">Un post</h5>
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <% @posts.each do |post| %>
+    <div class="col s12 m6 l4">
+      <div class="card large">
+        <div class="card-image waves-effect waves-block waves-light">
+          <%= image_tag(post.image.url(:blur), :alt => "", class: 'activator') %>
+          <span class="card-title activator truncate col s12", style="background-color:rgba(0, 0, 0, 0.2);"><%= post.title %></span>
+        </div>
+        <div class="card-content waves-effect waves-block waves-light">
+          <p class="activator"> <i><%= post.date %></i> <br/> <%= post.description %></p>
+        </div>
 
-		<p class="light"><i><%= post.date %></i></p>
-		<p class="light"><%= post.description %></p>
+        <div class="card-action center">
+          <a href="#modal_thinkItsMe" id="download-button" class="btn waves-effect waves-light teal model-trigger">Je crois que c'est moi</a>
+        </div>
 
-		<div class="row center">
-			<a href="#modal_thinkItsMe" id="download-button" class="btn waves-effect waves-light orange model-trigger">Je crois que c'est moi</a>
-		</div>
-	</div>
-</div>
+        <div class="card-reveal">
+          <span class="card-title teal-text"><%= post.title %><i class="material-icons grey-text text-darken-4 right">close</i></span>
+          <p><%= post.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-<div id="modal_thinkItsMe" class="modal">
-	<div class="modal-content">
-		<h4>Modal Header</h4>
-		<p>
-			Will be coming soon.
-		</p>
-	</div>
-	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Complete</a>
-	</div>
+  <div id="modal_thinkItsMe" class="modal">
+  	<div class="modal-content">
+  		<h4>Modal Header</h4>
+  		<p>
+  			Will be coming soon.
+  		</p>
+  	</div>
+  	<div class="modal-footer">
+  		<a href="<%= posts_check_path_url(id: post.id) %>" class="modal-action modal-close waves-effect waves-green btn-flat">Complete</a>
+  	</div>
+
 </div>

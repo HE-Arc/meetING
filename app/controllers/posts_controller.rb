@@ -4,14 +4,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
 
-  def oposite_gender(current_user)
-    if current_user.gender == "man"
-      return 'woman'
-    else
-      return 'man'
-    end
-  end
-
   def index
     if user_signed_in?
       @posts = Post.where("gender = ?", current_user.gender)
@@ -32,12 +24,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def confirm
+    respond_to do |format|
+      format.html {redirect_to posts_confirm_path, notice: 'Try and show stuff', data: post}
+    end
+  end
+
   def check
     respond_to do |format|
       if user_signed_in?
         if @post.name == current_user.name && @post.firstname == current_user.firstname
+          # Send mail.
           format.html { redirect_to posts_path, notice: 'C\'est bien toi!!!' }
-          else
+        else
           format.html { redirect_to posts_path, notice: 'C\'est pas toi...' }
         end
       else

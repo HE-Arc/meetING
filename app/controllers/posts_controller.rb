@@ -10,11 +10,11 @@ class PostsController < ApplicationController
       @posts = Post.all
     end
   end
- 
+
   def admin
     @posts = Post.where("users_id =?", current_user.id)
   end
-  
+
   def search
       if user_signed_in?
       @posts = Post.where("title ilike :kw and gender = :pp", :kw=>"%#{search_params[:title]}%", :pp => current_user.gender)
@@ -22,12 +22,19 @@ class PostsController < ApplicationController
       @posts = Post.where("title ilike :kw ", :kw=>"%#{search_params[:title]}%")
     end
   end
-  
+
   def check
     respond_to do |format|
       if user_signed_in?
         if @post.name == current_user.name && @post.firstname == current_user.firstname
-          format.html { redirect_to posts_path, notice: 'C\'est bien toi!!!' }
+
+          # Find the author:
+          @author = User.find_by_id(@post.users_id)
+
+          # Send the email.
+          SubscriptionMailer.confirm(@author,@post).deliver_now
+
+          format.html { redirect_to posts_path, notice: @author.inspect}#'C\'est bien toi!!!' }
           else
           format.html { redirect_to posts_path, notice: 'C\'est pas toi...' }
         end
@@ -36,7 +43,7 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -53,7 +60,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create      
+  def create
     @post = Post.new({:users_id => current_user.id, :date => DateTime.now, :title => post_params[:title], :description => post_params[:description], :name => post_params[:name], :firstname => post_params[:firstname], :gender => post_params[:gender]})
     if post_params[:image].blank?
       @post.image = File.open("public/" + post_params[:gender] + ".jpg")
@@ -108,7 +115,7 @@ class PostsController < ApplicationController
     def post_params
       params[:post]
     end
-    
+
     def search_params
       params[:q]
     end

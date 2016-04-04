@@ -1,11 +1,7 @@
 class SubscriptionMailer < ApplicationMailer
-  def confirm(subscription)
-    @email = subscription.email
-    @url = url_for(controller: :newsletter,
-                   action: :confirm,
-                   id: subscription.id,
-                   email: subscription.email)
-    @subject = 'Subscription to Admin'
+  def confirm(post_author,post)
+    @email = post_author.email
+    @subject = 'Your post has been seen and confirmed'
 
     mail to: @email, subject: @subject
   end

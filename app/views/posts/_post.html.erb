@@ -12,18 +12,10 @@
           <p class="activator"> <i><%= post.date %></i> <br/> <%= post.description %></p>
         </div>
 
-        <div class="card-action center">
-          <a href="#!" id="download-button<%= post.id %>" class="waves-effect waves-light btn teal">Je crois que c'est moi</a>
+        <div class="card-action center"> 
+          <button onclick="checkLogin('<%= post.name %>', '<%= post.firstname %>')" id="download-button<%= post.id %>" class="waves-effect waves-light btn teal">Je crois que c'est moi</button>
         </div>
-        <script>
-          document.getElementById("download-button<%= post.id %>").addEventListener("click", function() {
-          <% if user_signed_in? %>
-            theFunction("<%= post.name %>", "<%= post.firstname %>", "<%= current_user.name %>","<%= current_user.firstname %>");
-          <% else %>
-            window.location.href = "<%= new_user_session_path %>";
-          <%end%>
-          }, false);
-        </script>     
+        
         <div class="card-reveal">
           <span class="card-title teal-text"><%= post.title %><i class="material-icons grey-text text-darken-4 right">close</i></span>
           <p><%= post.description %></p>
@@ -46,20 +38,9 @@
  <div id="modalPasToi" class="modal">
     <div class="modal-content">
       <h4>Bien essayé!</h4>
-      <p>Désolé ce n'est pas toi...</p>
+      <p>mais ce n'est pas toi...</p>
     </div>
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
  </div>
-
- <script>
-    function theFunction ($name, $firstname, $user_name, $user_firstname) {
-      if ($name == $user_name && $firstname == $user_firstname) {
-        $('#modalToi').openModal();
-      }
-      else{
-        $('#modalPasToi').openModal();
-      }
-    }
-</script>

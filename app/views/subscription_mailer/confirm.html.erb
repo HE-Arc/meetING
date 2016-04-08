@@ -1,8 +1,31 @@
-<p>Hi <%= @email %>,</p>
+<h1>Ta flamme s'est declarée!</h1>
+<p>Coucou <%= @post_author.firstname %>!</p>
 <p>
-Please confirm your subscription using the following link:
+
+  <%
+  it = ''
+  suffix = ''
+  if @post.gender == 'woman'
+    it = 'elle'
+    suffix = 'e'
+  else
+    it = 'lui'
+    suffix = ''
+  end
+  %>
+
+  Ton post sur <b>meet</b><i>ING</i> a eu du succés et <%= @post.firstname %> s'est identifié <%= suffix%>.
+  Tu peux dirrectement prendre contact avec
+
+  <%= it %>.
 </p>
 <p style="text-align:center"><a href="<%= @url %>"><%= @url %></a></p>
 <p>
-KTHXBAI!
+KTHNXBAI!
+</p>
+
+<p>
+  Your meetING team.
+<br>
+  <i>Connecting people that are already connected!</i>
 </p>

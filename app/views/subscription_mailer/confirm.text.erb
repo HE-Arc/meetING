@@ -1,7 +1,24 @@
-Hi <%= @email %>,
+Ta flamme s'est declarée!
 
-Please confirm your subscription using the following link:
+Coucou <%= @post_author.firstname %>!
 
-  <%= @url %>
+<%
+  it = ''
+  suffix = ''
+  if @post.gender == 'woman'
+    it = 'elle'
+    suffix = 'e'
+  else
+    it = 'lui'
+    suffix = ''
+  end
+%>
 
-KTHXBAI!
+Ton post sur meetING a eu du succés et <%= @post.firstname %> s'est identifié <%= suffix%>.
+Tu peux dirrectement prendre contact avec<%= it %>.
+
+KTHNXBAI!
+
+
+Your meetING team.
+Connecting people that are already connected!

@@ -1,0 +1,17 @@
+# This file contains the variables used by your email server for production and development.
+# Rename this file to email.yml to be loaded by the config\initializers\email_setup.rb.
+
+development:
+  :address: ENV['EMAIL_SERVER']
+  :port: ENV['EMAIL_PORT']
+  :authentication: ENV['EMAIL_AUTHENTICATION']
+  :user_name: ENV['EMAIL_USER_NAME']
+  :password: ENV['EMAIL_PASSWORD']
+  :enable_starttls_auto: true
+production:
+  :address: ENV['PROD_EMAIL_SERVER']
+  :port: ENV['PROD_EMAIL_PORT']
+  :authentication: ENV['PROD_EMAIL_AUTHENTICATION']
+  :user_name: ENV['PROD_EMAIL_USER_NAME']
+  :password: ENV['PROD_EMAIL_PASSWORD']
+  :enable_starttls_auto: true

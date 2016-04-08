@@ -34,7 +34,7 @@ class PostsController < ApplicationController
           # Send the email.
           SubscriptionMailer.confirm(@author,@post).deliver_now
 
-          format.html { redirect_to posts_path, notice: @author.inspect}#'C\'est bien toi!!!' }
+          format.html { redirect_to posts_path, notice: 'C\'est bien toi!!!' }
           else
           format.html { redirect_to posts_path, notice: 'C\'est pas toi...' }
         end

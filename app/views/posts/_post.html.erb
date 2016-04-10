@@ -3,19 +3,21 @@
 <div class="row">
   <% @posts.each do |post| %>
     <div class="col s12 m6 l4">
-      <div class="card large">
+      <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
           <%= image_tag(post.image.url(:blur), :alt => "", class: 'activator') %>
-          <span class="card-title activator truncate col s12", style="background-color:rgba(0, 0, 0, 0.2);"><%= post.title %></span>
-        </div>
-        <div class="card-content waves-effect waves-block waves-light">
-          <p class="activator"> <i><%= post.date %></i> <br/> <%= post.description %></p>
+
         </div>
 
-        <div class="card-action center"> 
+        <div class="card-content">
+          <span class="card-title activator truncate grey-text text-darken-4"><%= post.title %></span>
+          <p class="activator"> <i><%= post.date %></i></span>
+        </div>
+
+        <div class="card-action center">
           <a href="<%= posts_check_url(id: post.id) %>" id="download-button" class="btn waves-effect waves-light teal">Je crois que c'est moi</a>
         </div>
-         
+
         <div class="card-reveal">
           <span class="card-title teal-text"><%= post.title %><i class="material-icons grey-text text-darken-4 right">close</i></span>
           <p><%= post.description %></p>
@@ -34,7 +36,7 @@
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
  </div>
- 
+
  <div id="modalPasToi" class="modal">
     <div class="modal-content">
       <h4>Bien essayé!</h4>

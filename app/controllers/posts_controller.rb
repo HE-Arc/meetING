@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :check]
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :check]
   # GET /posts
   # GET /posts.json
   def index
@@ -10,22 +10,21 @@ class PostsController < ApplicationController
       @posts = Post.all
     end
   end
-
+ 
   def admin
     @posts = Post.where("users_id =?", current_user.id)
   end
 
   def search
       if user_signed_in?
-      @posts = Post.where("title ilike :kw and gender = :pp", :kw=>"%#{search_params[:title]}%", :pp => current_user.gender)
+      @posts = Post.where("title ilike :kw or description ilike :kw and gender = :pp", :kw=>"%#{search_params[:title]}%", :pp => current_user.gender)
     else
-      @posts = Post.where("title ilike :kw ", :kw=>"%#{search_params[:title]}%")
+      @posts = Post.where("title ilike :kw or description ilike :kw", :kw=>"%#{search_params[:title]}%")
     end
   end
 
   def check
     respond_to do |format|
-      if user_signed_in?
         if @post.name == current_user.name && @post.firstname == current_user.firstname
 
           # Find the author:
@@ -35,12 +34,9 @@ class PostsController < ApplicationController
           SubscriptionMailer.confirm(@author,@post).deliver_now
 
           format.html { redirect_to posts_path, notice: 'C\'est bien toi!!!' }
-          else
-          format.html { redirect_to posts_path, notice: 'C\'est pas toi...' }
+        else
+          format.html { redirect_to :back, notice: 'C\'est pas toi!!!' }
         end
-      else
-        format.html { redirect_to posts_path, notice: 'pas connecter : ouvrir une popup pour la saisie du nom...' }
-      end
     end
   end
 
@@ -86,7 +82,7 @@ class PostsController < ApplicationController
         if !post_params[:image].blank?
           @post.update({:image => post_params[:image]})
         end
-        format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
+        format.html { redirect_to posts_admin_path, notice: 'Post was successfully updated.' }
         format.json { render :index, status: :ok, location: @post }
       else
         format.html { render :edit }

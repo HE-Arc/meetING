@@ -15,26 +15,7 @@
     <%= javascript_include_tag "materialize" %>
     <%= javascript_include_tag "init" %>
     <%= csrf_meta_tags %> 
-    
-    <!-- Vérifie si le post décrit l'utilisateur qui s'y identifie, appelé dans _post.html.erb -->
-    <script type="text/javascript">    
-      function checkLogin( name, firstname) {
-        <% if user_signed_in? %>
-          postMatching ( name, firstname, "<%= current_user.name %>", "<%= current_user.firstname %>")
-        <%else%>
-          window.location.href = " <%= new_user_session_path %>"
-        <%end%>
-      }
-      
-      function postMatching ( name, firstname, user_name, user_firstname) {
-        if (name == user_name && firstname == user_firstname ){
-          $('#modalToi').openModal()
-        }
-        else{
-          $('#modalPasToi').openModal()
-        }
-    }
-    </script>
+     
   </head>
 
   <body class="grey lighten-4">

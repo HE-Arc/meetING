@@ -13,9 +13,9 @@
         </div>
 
         <div class="card-action center"> 
-          <button onclick="checkLogin('<%= post.name %>', '<%= post.firstname %>')" id="download-button<%= post.id %>" class="waves-effect waves-light btn teal">Je crois que c'est moi</button>
+          <a href="<%= posts_check_url(id: post.id) %>" id="download-button" class="btn waves-effect waves-light teal">Je crois que c'est moi</a>
         </div>
-        
+         
         <div class="card-reveal">
           <span class="card-title teal-text"><%= post.title %><i class="material-icons grey-text text-darken-4 right">close</i></span>
           <p><%= post.description %></p>

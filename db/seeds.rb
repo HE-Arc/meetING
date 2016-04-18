@@ -5,21 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
- 
+
 User.create(
   email: "wirth@m.com",
   password: "pommes",
   name: "wirth",
   firstname: "jeremy",
   gender: "man")
-  
+
 User.create(
   email: "assuncao@m.com",
   password: "pommes",
   name: "assuncao",
   firstname: "jeshon",
-  gender: "woman") 
-  
+  gender: "woman")
+
 User.create(
   email: "mut@m.com",
   password: "pommes",
@@ -27,15 +27,9 @@ User.create(
   firstname: "horia",
   gender: "man")
 
-$i = 0
-$num = 15
-$gender = "";
-until $i > $num  do
-  if(Faker::Number.between(0,1) == 0)
-    $gender = "man";
-  else
-    $gender = "woman";
-  end
+15.times do
+  gender = Faker::Number.between(0,1) == 0 ? "man" : "woman"
+
   Post.create(
     users_id: Faker::Number.between(1, 3),
     date: Faker::Date.between(2.days.ago, Date.today),
@@ -44,7 +38,5 @@ until $i > $num  do
     name: Faker::Name.last_name,
     firstname: Faker::Name.first_name,
     image: Faker::Avatar.image,
-    gender: $gender
-    )
-    $i += 1;
+    gender: gender)
 end

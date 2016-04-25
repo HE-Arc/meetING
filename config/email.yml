@@ -1,0 +1,17 @@
+# This file contains the variables used by your email server for production and development.
+# Rename this file to email.yml to be loaded by the config\initializers\email_setup.rb.
+
+development:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: meetinghearc@gmail.com
+  :password: Meet1234
+  :enable_starttls_auto: true
+production:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: meetinghearc@gmail.com
+  :password: Meet1234
+  :enable_starttls_auto: true
